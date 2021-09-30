@@ -1,5 +1,4 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
-
 SELECT
 	  JSON_VALUE([SRC], '$.api_properties') AS api_properties
 	  ,JSON_VALUE([SRC], '$.carrier') AS carrier
@@ -50,13 +49,22 @@ SELECT
 GO
 
 
-/****** Script for SelectTopNRows command from SSMS  ******/
 
+
+/****** Script for SelectTopNRows command from SSMS  ******/
 SELECT * FROM dbo.flattened_json_table;
+
+
+
 
 
 /****** DELETE null rows from the table  ******/
 DELETE FROM dbo.flattened_json_table WHERE time_stamp IS NULL;
+
+
+
+
+
 
 
 /****** Contains UNIQUE rows  ******/
@@ -71,12 +79,20 @@ SELECT count(distinct user_timestamp), count(user_timestamp) FROM ROWCTE;
 
 
 
+
+
+
 /****** PK - (userid, time_stamp) ******/
 ALTER TABLE dbo.flattened_json_table ALTER COLUMN userid nvarchar(40) NOT NULL;
 ALTER TABLE dbo.flattened_json_table ALTER COLUMN time_stamp nvarchar(40) NOT NULL;
 
 ALTER TABLE dbo.flattened_json_table
 ADD PRIMARY KEY (userid, time_stamp);
+
+
+
+
+
 
 
 /****** Setting proper Datatype ******/
@@ -87,8 +103,14 @@ ALTER TABLE dbo.flattened_json_table ALTER COLUMN sequence_number INT;
 ALTER TABLE dbo.flattened_json_table ALTER COLUMN session_id BIGINT;
 
 
+
+
+
 /****** TABLE SCHEMA ******/
 EXEC sp_help 'dbo.flattened_json_table';
+
+
+
 
 
 SELECT * FROM dbo.flattened_json_table;
