@@ -68,7 +68,7 @@ DELETE FROM dbo.flattened_json_table WHERE time_stamp IS NULL;
 
 
 /****** Contains UNIQUE rows  ******/
-with ROWCTE(user_session) as  
+with ROWCTE(user_timestamp) as  
 (
 select CONCAT(userid, '_', time_stamp) AS user_timestamp
 from dbo.flattened_json_table)
