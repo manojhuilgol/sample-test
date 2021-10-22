@@ -1,4 +1,2 @@
 # sample-test
 
-
-abc updates
